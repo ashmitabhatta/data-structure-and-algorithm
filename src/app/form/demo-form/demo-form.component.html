@@ -1,0 +1,33 @@
+<div
+  class="blank-layout-container justify-content-center align-items-center bg-light"
+>
+  <div
+    class="position-relative row w-100 h-100 bg-gredient justify-content-center"
+  >
+    <div class="col-lg-4 d-flex align-items-center">
+      <mat-card class="cardWithShadow boxed-auth">
+        <mat-card-content class="p-32">
+          <div class="text-center">
+            <h4>Sign in</h4>
+            <p>Enter your credentials to access your account.</p>
+          </div>
+          @if(form){
+          <form [formGroup]="form" class="m-t-30" (submit)="submit()">
+            <app-input-field [formControlName]="attributes.username.key" />
+            <app-input-field [formControlName]="attributes.password.key" />
+
+            <button
+              type="submit"
+              mat-flat-button
+              color="primary"
+              class="w-100"
+            >
+              Sign In
+            </button>
+          </form>
+          }
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>
