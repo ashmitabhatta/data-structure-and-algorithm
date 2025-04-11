@@ -16,7 +16,19 @@
     "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
-    "module": "ES2022"
+    "module": "ES2022",
+    "paths": {
+      "@materialModule/*": ["./src/app/material/*"],
+      "@customInputs/*": ["./src/app/shared/components/form-fields/*"],
+      "@sharedComponents/*": ["./src/app/shared/components/*"],
+      "@sharedConstants/*": ["./src/app/shared/constants/*"],
+      "@sharedModels/*": ["./src/app/shared/models/*"],
+      "@sharedTypes/*": ["./src/app/shared/types/*"],
+      "@sharedTemplates/*": ["./src/app/shared/templates/*"],
+      "@sharedStore/*": ["./src/app/shared/store/*"],
+      "@sharedUtils/*": ["./src/app/shared/utils/*"],
+      "@sharedPipes/*": ["./src/app/shared/pipes/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

@@ -1,6 +1,8 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+
 import { InputRendererDirective } from './directives/input-renderer.directive';
+import { InputConfig } from './types/input.types';
 
 @Component({
   selector: 'app-input-field',
@@ -13,7 +15,14 @@ import { InputRendererDirective } from './directives/input-renderer.directive';
       multi: true,
     },
   ],
-  template: `<ng-container appInputRenderer [value]="value"></ng-container>`,
+  template: `
+    <ng-container
+      appInputRenderer
+      [value]="value"
+      [inputConfig]="inputConfig"
+      (blurred)="onTouched?.()"
+    />
+  `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InputFieldComponent implements ControlValueAccessor {
@@ -21,6 +30,7 @@ export class InputFieldComponent implements ControlValueAccessor {
   onTouched?: () => void;
   disabled: boolean = false;
   #value?: string;
+  #inputConfig?: InputConfig;
 
   get value(): string | undefined {
     return this.#value;
@@ -30,15 +40,26 @@ export class InputFieldComponent implements ControlValueAccessor {
     this.#value = value;
   }
 
+  @Input() set inputConfig(value: InputConfig | undefined) {
+    if (!value) {
+      return;
+    }
+    this.#inputConfig = { ...(this.#inputConfig ?? {}), ...value };
+  }
+
+  get inputConfig(): InputConfig | undefined {
+    return this.#inputConfig;
+  }
+
   writeValue(obj: string): void {
     this.value = obj;
   }
 
-  registerOnChange(fn: any): void {
+  registerOnChange(fn: (value: string | undefined) => void): void {
     this.onChange = fn;
   }
 
-  registerOnTouched(fn: any): void {
+  registerOnTouched(fn: () => void): void {
     this.onTouched = fn;
   }
 

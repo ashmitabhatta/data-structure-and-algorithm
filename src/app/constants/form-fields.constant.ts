@@ -1,0 +1,60 @@
+export type AttributeKeys = keyof typeof ATTRIBUTES_CONSTANT;
+
+export const ATTRIBUTES_CONSTANT = Object.freeze({
+  username: {
+    key: 'username',
+    label: 'labels.username',
+    placeholder: 'placeholder.username',
+    type: 'text',
+    value: null,
+    maxLength: 50,
+  },
+  password: {
+    key: 'password',
+    label: 'labels.password',
+    placeholder: 'placeholder.password',
+    type: 'password',
+    value: null,
+    maxLength: 50,
+  },
+  email: {
+    key: 'email',
+    label: 'labels.email',
+    placeholder: 'placeholder.email',
+    type: 'email',
+    value: null,
+    maxLength: 50,
+  },
+  mobile: {
+    key: 'mobile',
+    label: 'labels.mobile',
+    placeholder: 'placeholder.mobile',
+    type: 'text',
+    value: null,
+    maxLength: 50,
+  },
+  oldPassword: {
+    key: 'oldPassword',
+    label: 'labels.oldPassword',
+    placeholder: 'placeholder.oldPassword',
+    type: 'text',
+    value: null,
+    maxLength: 50,
+  },
+  newPassword: {
+    key: 'newPassword',
+    label: 'labels.newPassword',
+    placeholder: 'placeholder.newPassword',
+    type: 'text',
+    value: null,
+    maxLength: 50,
+  },
+  confirmPassword: {
+    key: 'confirmPassword',
+    label: 'labels.confirmPassword',
+    placeholder: 'placeholder.confirmPassword',
+    type: 'text',
+    value: null,
+    maxLength: 50,
+  },
+});

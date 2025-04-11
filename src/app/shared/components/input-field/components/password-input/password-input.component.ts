@@ -1,17 +1,17 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { MaterialModule } from '@materialModule/material.module';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { TranslateModule } from '@ngx-translate/core';
 
+import { MaterialModule } from '@materialModule/material.module';
 import { FormErrorPipe } from '@sharedPipes/form-error/form-error.pipe';
 import { CustomMatInputDirective } from '../../directives/custom-mat-input.directive';
 import { BaseInputComponent } from '../base-input/base-input.component';
 
 @Component({
-  selector: 'app-default-input',
+  selector: 'app-password-input',
   standalone: true,
   imports: [
-    MaterialModule,
     TranslateModule,
+    MaterialModule,
     CustomMatInputDirective,
     FormErrorPipe,
   ],
@@ -20,7 +20,7 @@ import { BaseInputComponent } from '../base-input/base-input.component';
       <mat-label>{{ attributes[key].label | translate }}</mat-label>
       <input
         customMatInput
-        [type]="attributes[key].type"
+        [type]="hide ? 'password' : 'text'"
         [value]="value"
         [disabled]="disabled"
         [placeholder]="attributes[key].placeholder | translate"
@@ -34,6 +34,11 @@ import { BaseInputComponent } from '../base-input/base-input.component';
             | translate
         "
       />
+      <button mat-icon-button type="button" matSuffix (click)="hide = !hide">
+        <mat-icon class="icon-clr-medium">
+          {{ hide ? 'visibility_off' : 'visibility' }}
+        </mat-icon>
+      </button>
     </mat-form-field>
   `,
   styles: `
@@ -43,4 +48,6 @@ import { BaseInputComponent } from '../base-input/base-input.component';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DefaultInputComponent extends BaseInputComponent {}
+export class PasswordInputComponent extends BaseInputComponent {
+  @Input() hide?: boolean = true;
+}
